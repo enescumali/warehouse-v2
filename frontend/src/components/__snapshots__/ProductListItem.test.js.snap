@@ -1,0 +1,133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductListItem loads the article item list on mount 1`] = `
+<div>
+  <div>
+    <div>
+      <strong
+        class="block mb-4 text-2xl"
+      >
+        <span
+          class="relative"
+        >
+          <span>
+            Dining Chair
+          </span>
+          
+        </span>
+      </strong>
+      <ul
+        class="py-2"
+      >
+        <li>
+          <div>
+            <p
+              data-testid="articleName"
+            >
+              name
+            </p>
+            <span>
+              <span />
+              In stock
+              <span
+                data-testid="articleAmount"
+              >
+                (1)
+              </span>
+            </span>
+            <span
+              data-testid="articleRequired"
+            >
+               Required: 
+              4
+            </span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <p
+              data-testid="articleName"
+            >
+              name
+            </p>
+            <span>
+              <span />
+              In stock
+              <span
+                data-testid="articleAmount"
+              >
+                (1)
+              </span>
+            </span>
+            <span
+              data-testid="articleRequired"
+            >
+               Required: 
+              1
+            </span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <p
+              data-testid="articleName"
+            >
+              name
+            </p>
+            <span>
+              <span />
+              In stock
+              <span
+                data-testid="articleAmount"
+              >
+                (1)
+              </span>
+            </span>
+            <span
+              data-testid="articleRequired"
+            >
+               Required: 
+              8
+            </span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div
+      class="items-center md:flex"
+    >
+      <button
+        class="justify-center mb-2 md:mb-0 md:mr-2 primary-button sm:w-auto w-full "
+        disabled=""
+      >
+        <svg
+          class="animate-spin mr-3 h-5 w-5 text-white"
+          fill="none"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            class="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            stroke-width="4"
+          />
+          <path
+            class="opacity-75"
+            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+            fill="currentColor"
+          />
+        </svg>
+        <span
+          class="text"
+        >
+          Create sale
+        </span>
+      </button>
+      
+    </div>
+  </div>
+</div>
+`;

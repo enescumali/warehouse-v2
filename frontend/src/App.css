@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  --primary-color: #0058a3;
+  --primary-color-hover: #004f93;
+  --text-color: #484848;
+  --text-color-hover: #111; 
+  font-family: 'Noto Sans', sans-serif; 
+  color: var(--text-color);
+}
+
+.App { 
+  min-height: 100vh;
+}
+
+.tab-titles a {
+  display: block;
+}
+
+.tab-titles a.selected {
+  border-bottom: 1px solid var(--text-color);
+  margin-bottom: -1px;
+}
+
+.tab-content {
+  min-height: 50vh;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 1.25rem;
+}
+
+.primary-button {
+  background-color: var(--primary-color);
+  color: #fff;
+  border-radius: 64px;
+  padding: 0 1rem;
+  height: 2.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.primary-button:hover {
+  background-color: var(--primary-color-hover);
+}
+
+.primary-button:disabled {
+  background-color: #ccc;
+  pointer-events: none;
+}
+
+.primary-button svg{
+  display: none;
+}
+
+.primary-button.loading svg{
+  display: inline-block;
+}
+
+.anchor-button {
+  padding: 0 .5rem;
+  text-decoration: underline;
+}
+
+.anchor-button:hover {
+  color: var(--text-color-hover);
+}
+
+.list li:first-child {
+  padding-top: 0;
+}
+
+.list li:last-child {
+  border-bottom: none;
+}
+
+.quantity-badge {
+  background: var(--primary-color);
+  color: #fff;
+  font-weight: normal;
+  font-size: 1rem;
+  border-radius: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  position: absolute;
+  right: -2rem;
+  top: 3px;
+  line-height: 0;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+/* override for tailwind class */
+.animate-bounce {
+  animation: bounce .6s infinite;
+}
