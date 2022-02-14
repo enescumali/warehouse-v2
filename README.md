@@ -1,6 +1,6 @@
 # Warehouse App
 
-This project is to manage the warehouse inventory which consists of creating sales and seeing the sales history.
+This project is to manage the warehouse inventory which consists of creating sales, updating amount of the articles and seeing the sales history.
 
 # Server
 
@@ -41,7 +41,6 @@ npm test
 Building UI prod bundle:
 
 ```bash
-cd frontend
 npm run build
 ```
 
