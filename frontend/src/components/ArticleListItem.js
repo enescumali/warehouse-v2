@@ -51,7 +51,7 @@ function ArticleListItem({article, onStatusChange, substractArticles}) {
                 isMountedRef.current = false;
             };
 
-    }, [tryAgain])
+    }, [tryAgain, article.id])
 
     useEffect(() => {
         if(substractArticles || trySubsctractAgain) {
@@ -88,7 +88,7 @@ function ArticleListItem({article, onStatusChange, substractArticles}) {
                     setIsLoaded(true);
                 });     
         }
-    }, [substractArticles, trySubsctractAgain]);
+    }, [substractArticles, trySubsctractAgain, article.amountRequired, article.id]);
 
     useEffect(() => {
         if(isSuccessful !== null) {
@@ -101,7 +101,11 @@ function ArticleListItem({article, onStatusChange, substractArticles}) {
             
             onStatusChange(isSuccessful, articleDetailToSend);
         }
-    }, [isSuccessful]);
+    }, [isSuccessful, 
+        article.amountRequired, 
+        article.id, 
+        articleDetail.amountInStock,
+        articleDetail.name]);
     
     if (error) {
         return <ErrorMessage className="mb-10" dataTestId="errorMessage" onErrorAction={() => setTryAgain(true)} message={error}></ErrorMessage>
