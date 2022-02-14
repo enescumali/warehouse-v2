@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import PropTypes from "prop-types";
 import CONSTANTS from "../constants";
 import ErrorMessage from "./ErrorMessage";
 import LoadingState from "./LoadingState";
@@ -170,5 +171,11 @@ function ArticleListItem({ article, onStatusChange, substractArticles }) {
     </div>
   );
 }
+
+ArticleListItem.propTypes = {
+  article: PropTypes.object,
+  onStatusChange: PropTypes.func,
+  substractArticles: PropTypes.bool,
+};
 
 export default ArticleListItem;

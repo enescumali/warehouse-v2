@@ -51,7 +51,7 @@ function AddArticles() {
         setButtonText("Added");
       })
       .catch((err) => {
-        setButtonText("Error, try again");
+        setButtonText("Error, try again", err);
       });
   };
 

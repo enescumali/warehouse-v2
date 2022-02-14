@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback, useRef } from "react";
+import PropTypes from "prop-types";
 import CONSTANTS from "../constants";
 import ErrorMessage from "./ErrorMessage";
 import ArticleListItem from "./ArticleListItem";
@@ -66,7 +67,7 @@ function ProductListItem({ product, onSubstractArticle }) {
   }, []);
 
   useEffect(() => {
-    let isAllarticlesLoaded = product.articles.length === articles.length; // don't know why that causes a compile warning
+    const isAllarticlesLoaded = product.articles.length === articles.length; // don't know why that causes a compile warning
 
     if (isAllarticlesLoaded && failedArticles.length === 0) {
       if (substractArticles) {
@@ -105,7 +106,7 @@ function ProductListItem({ product, onSubstractArticle }) {
   const handleArticleStatus = (isSuccessful, articleObj) => {
     if (!isSuccessful) {
       //  extract failed article first from the failedArticles list
-      let filteredFailedArticles = failedArticles.filter((article) => {
+      const filteredFailedArticles = failedArticles.filter((article) => {
         return article.id !== articleObj.id;
       });
 
@@ -113,20 +114,20 @@ function ProductListItem({ product, onSubstractArticle }) {
       setFailedArticles([...filteredFailedArticles, articleObj]);
 
       // as the article is failed, it needs to removed from succesful ones
-      let filteredArticles = articles.filter((article) => {
+      const filteredArticles = articles.filter((article) => {
         return article.id !== articleObj.id;
       });
 
       // then add it in the successful ones
       setArticles(filteredArticles);
     } else {
-      let filteredFailedArticles = failedArticles.filter((article) => {
+      const filteredFailedArticles = failedArticles.filter((article) => {
         return article.id !== articleObj.id;
       });
 
       setFailedArticles(filteredFailedArticles);
 
-      let filteredArticles = articles.filter((article) => {
+      const filteredArticles = articles.filter((article) => {
         return article.id !== articleObj.id;
       });
 
@@ -214,5 +215,10 @@ function ProductListItem({ product, onSubstractArticle }) {
     </div>
   );
 }
+
+ProductListItem.propTypes = {
+  product: PropTypes.object,
+  onSubstractArticle: PropTypes.func,
+};
 
 export default ProductListItem;

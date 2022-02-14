@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 function LoadingState({ type = "article" }) {
   return type === "article" ? (
     <div className="rounded-md w-full mb-6">
@@ -40,5 +42,9 @@ function LoadingState({ type = "article" }) {
     </div>
   );
 }
+
+LoadingState.propTypes = {
+  type: PropTypes.string,
+};
 
 export default LoadingState;

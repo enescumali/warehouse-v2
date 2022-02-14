@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import CONSTANTS from "../constants";
 import ErrorMessage from "./ErrorMessage";
 import LoadingState from "./LoadingState";
@@ -67,5 +68,9 @@ function SalesListItem({ productId }) {
     </h3>
   );
 }
+
+SalesListItem.propTypes = {
+  productId: PropTypes.number,
+};
 
 export default SalesListItem;

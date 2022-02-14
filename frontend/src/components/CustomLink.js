@@ -1,8 +1,9 @@
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
+import PropTypes from "prop-types";
 
 function CustomLink({ children, to, ...props }) {
-  let resolved = useResolvedPath(to);
-  let match = useMatch({ path: resolved.pathname, end: true });
+  const resolved = useResolvedPath(to);
+  const match = useMatch({ path: resolved.pathname, end: true });
 
   return (
     <div>
@@ -12,5 +13,12 @@ function CustomLink({ children, to, ...props }) {
     </div>
   );
 }
+// TODO
+
+CustomLink.propTypes = {
+  children: PropTypes.string,
+  to: PropTypes.string,
+  props: PropTypes.array,
+};
 
 export default CustomLink;

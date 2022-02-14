@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 function ErrorMessage({ message, onErrorAction, className, dataTestId }) {
   return (
     <div
@@ -15,5 +17,12 @@ function ErrorMessage({ message, onErrorAction, className, dataTestId }) {
     </div>
   );
 }
+
+ErrorMessage.propTypes = {
+  message: PropTypes.string,
+  onErrorAction: PropTypes.func,
+  className: PropTypes.string,
+  dataTestId: PropTypes.string,
+};
 
 export default ErrorMessage;
