@@ -15,15 +15,13 @@ function ArticleListItem({article, onStatusChange, substractArticles}) {
 
     useEffect(() => {
         isMountedRef.current = true; 
-        const controller = new AbortController();
-        const signal = controller.signal;
 
         setIsLoaded(false);
         setError(null);
         setIsSuccessful(null);
         setTryAgain(false);
         
-        fetch(`${CONSTANTS.apiUrl}/articles/${article.id}`, {signal})
+        fetch(`${CONSTANTS.apiUrl}/articles/${article.id}`)
             .then((response) => {
                 if (response.ok) {
                     return response.json();
@@ -51,7 +49,6 @@ function ArticleListItem({article, onStatusChange, substractArticles}) {
             
             return () => {
                 isMountedRef.current = false;
-                controller.abort();
             };
 
     }, [tryAgain])
