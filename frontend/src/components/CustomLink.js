@@ -6,11 +6,7 @@ function CustomLink({ children, to, ...props }) {
 
   return (
     <div>
-      <Link
-        className={match ? 'selected' : ''}
-        to={to}
-        {...props}
-      >
+      <Link className={match ? "selected" : ""} to={to} {...props}>
         {children}
       </Link>
     </div>
