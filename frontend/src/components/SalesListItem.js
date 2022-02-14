@@ -24,17 +24,18 @@ function SalesListItem({productId}) {
                 }
             })
             .then((result) => {
-                setIsLoaded(true);
                 setProductDetail(result);
             })
             .catch((error) => {
                 if (error.name === 'AbortError') {
                     console.log('Fetch successfully aborted');
                 } else {
-                    setIsLoaded(false);
                     setError(error.message);
                 }
-            });
+            })
+            .finally(() => {
+                setIsLoaded(true);
+            }); 
 
             return () => {
                 controller.abort();
@@ -44,17 +45,18 @@ function SalesListItem({productId}) {
   
     if (error) {
         return <ErrorMessage onErrorAction={() => setTryAgain(true)} message={error}></ErrorMessage>
-      } else if (!isLoaded) {
+    } 
+      
+    if (!isLoaded) {
         return <LoadingState></LoadingState>;
-      } else {
-        return (
-            <h3>
-                <strong className="text-2xl block">{productDetail.name}</strong>
-                <span className="bg-black font-light px-2 text-xs text-white"> {productDetail.id}</span>
-            </h3>
-            
-        );
-    }
+    } 
+    
+    return (
+        <h3>
+            <strong className="text-2xl block">{productDetail.name}</strong>
+            <span className="bg-black font-light px-2 text-xs text-white"> {productDetail.id}</span>
+        </h3>
+    );
 }
 
 export default SalesListItem;

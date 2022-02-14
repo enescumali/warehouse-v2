@@ -48,7 +48,6 @@ function ProductListItem({product, onSubstractArticle}) {
             .then((result) => {
                 // result is not directly used here but better to keep this way
                 if(isMountedRef.current){
-                    setIsLoading(false);
                     setIsSaleSuccessful(true);
                     setArticles([]);
                     setFailedArticles([]);
@@ -56,10 +55,12 @@ function ProductListItem({product, onSubstractArticle}) {
                 }
             })
             .catch((error) => {
-                setIsLoading(false);
                 setError(error.message);
                 setIsSaleSuccessful(false);
-            });
+            })
+            .finally(() => {
+                setIsLoading(false);
+            }); 
     }, []);
 
     useEffect(() => {

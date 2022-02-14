@@ -32,13 +32,14 @@ function ArticleListItem({article, onStatusChange, substractArticles}) {
                 if(isMountedRef.current){
                     setArticleDetail(result);
                     setIsSuccessful(true);
-                    setIsLoaded(true); 
                 }
             })
             .catch((error) => {
                 setError(error.message);
                 setIsSuccessful(false);
-                setIsLoaded(true);    
+            })
+            .finally(() => {
+                setIsLoaded(true);
             });
             
             return () => {
@@ -46,19 +47,6 @@ function ArticleListItem({article, onStatusChange, substractArticles}) {
             };
 
     }, [tryAgain])
-
-    useEffect(() => {
-        if(isSuccessful !== null) {
-            const articleDetailToSend = {
-                id: article.id,
-                name: articleDetail.name,
-                inStock: articleDetail.amountInStock,
-                required: article.amountRequired
-            }
-            
-            onStatusChange(isSuccessful, articleDetailToSend);
-        }
-    }, [isSuccessful]);
 
     useEffect(() => {
         if(substractArticles || trySubsctractAgain) {
@@ -86,15 +74,29 @@ function ArticleListItem({article, onStatusChange, substractArticles}) {
                 .then((result) => {
                     setArticleDetail(result);
                     setIsSuccessful(true);
-                    setIsLoaded(true); 
                 })
                 .catch((error) => {
                     setSubstractError(error.message);
                     setIsSuccessful(false);
-                    setIsLoaded(true);    
-                });    
+                })
+                .finally(() => {
+                    setIsLoaded(true);
+                });     
         }
-    }, [substractArticles, trySubsctractAgain])
+    }, [substractArticles, trySubsctractAgain]);
+
+    useEffect(() => {
+        if(isSuccessful !== null) {
+            const articleDetailToSend = {
+                id: article.id,
+                name: articleDetail.name,
+                inStock: articleDetail.amountInStock,
+                required: article.amountRequired
+            }
+            
+            onStatusChange(isSuccessful, articleDetailToSend);
+        }
+    }, [isSuccessful]);
     
     if (error) {
         return <ErrorMessage className="mb-10" dataTestId="errorMessage" onErrorAction={() => setTryAgain(true)} message={error}></ErrorMessage>

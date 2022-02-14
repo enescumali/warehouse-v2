@@ -30,7 +30,6 @@ function ProductList() {
             })
             .then((result) => {
                 if(isMountedRef.current){
-                    setIsLoaded(true);
                     setProducts(result);
                 }
             })
@@ -38,10 +37,12 @@ function ProductList() {
                 if (error.name === 'AbortError') {
                     console.log('Fetch successfully aborted');
                 } else {
-                    setIsLoaded(false);
                     setError(error.message);
                 }
-            });
+            })
+            .finally(() => {
+                setIsLoaded(true);
+            }); 
 
             return () => {
                 isMountedRef.current = false;

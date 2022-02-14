@@ -28,7 +28,6 @@ function SalesList() {
             })
             .then((result) => {
                 if(isMountedRef.current){
-                    setIsLoaded(true);
                     setSales(result);
                 }
             })
@@ -36,10 +35,12 @@ function SalesList() {
                 if (error.name === 'AbortError') {
                     console.log('Fetch successfully aborted');
                 } else {
-                    setIsLoaded(false);
                     setError(error.message);
                 }
-            });
+            })
+            .finally(() => {
+                setIsLoaded(true);
+            }); 
 
             return () => {
                 isMountedRef.current = false;
