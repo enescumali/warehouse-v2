@@ -39,6 +39,7 @@ describe("ProductListItem", () => {
     expect(container).toMatchSnapshot();
   });
 
+  //TODO: complete this test
   it('sets the create sale button enabled', () => {
     // const {container} = render(<ProductListItem product={productMock} />);    
     

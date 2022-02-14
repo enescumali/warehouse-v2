@@ -35,7 +35,7 @@ function ProductList() {
             })
             .catch((error) => {
                 if (error.name === 'AbortError') {
-                    console.log('Fetch successfully aborted');
+                    console.log('Product list call successfully aborted');
                 } else {
                     setError(error.message);
                 }

@@ -1,4 +1,4 @@
-import { render, screen, act } from '@testing-library/react';
+import { render, screen, fireEvent, waitForElement } from '@testing-library/react';
 import ArticleListItem from './ArticleListItem';
 
 const articleDetailMock = {
@@ -39,15 +39,39 @@ describe("ArticleListItem", () => {
     expect(articleRequired).toHaveTextContent(articleMock.amountRequired);
   });
 
-  it("shows error state when api call fails", async () => {
-    global.fetch = jest.fn(() => Promise.resolve({
-      ok: false
-    }));
-
-    render(<ArticleListItem article={articleMock} onStatusChange={() => {}} />);
+  describe("when api call fails", () => {
+    beforeEach(() => {
+      originalFetch = global.fetch;
   
-    const errorMessage = await screen.findByTestId('errorMessage');
+      global.fetch = jest.fn(() => Promise.resolve({
+        ok: false
+      }));
+    });
+  
+    afterEach(() => {
+        global.fetch = originalFetch;
+    });
+
+    it("shows error state", async () => {
+      render(<ArticleListItem article={articleMock} onStatusChange={() => {}} />);
     
-    expect(errorMessage).toHaveTextContent("Something went wrong getting the article, we are on it");
+      const errorMessage = await screen.findByTestId('errorMessage');
+      
+      expect(errorMessage).toHaveTextContent("Something went wrong getting the article, we are on it");
+    });
+
+    //TODO: complete this test
+    it("tries again when user clicks", async () => {
+      // render(<ArticleListItem article={articleMock} onStatusChange={() => {}} />);
+
+      // const tryAgainButton = await screen.findByTestId('tryAgainButton');
+  
+      // const onStatusChange = jest.fn();
+
+      // fireEvent.click(tryAgainButton);
+
+      // expect(onStatusChange).toHaveBeenCalled();
+
+    });
   })
 });

@@ -14,13 +14,16 @@ function ArticleListItem({article, onStatusChange, substractArticles}) {
     const isMountedRef = useRef(null);
 
     useEffect(() => {
-        isMountedRef.current = true;  
+        isMountedRef.current = true; 
+        const controller = new AbortController();
+        const signal = controller.signal;
+
         setIsLoaded(false);
         setError(null);
         setIsSuccessful(null);
         setTryAgain(false);
         
-        fetch(`${CONSTANTS.apiUrl}/articles/${article.id}`)
+        fetch(`${CONSTANTS.apiUrl}/articles/${article.id}`, {signal})
             .then((response) => {
                 if (response.ok) {
                     return response.json();
@@ -35,8 +38,12 @@ function ArticleListItem({article, onStatusChange, substractArticles}) {
                 }
             })
             .catch((error) => {
-                setError(error.message);
-                setIsSuccessful(false);
+                if (error.name === 'AbortError') {
+                    console.log('Article list call successfully aborted');
+                } else {
+                    setError(error.message);
+                    setIsSuccessful(false);                
+                }
             })
             .finally(() => {
                 setIsLoaded(true);
@@ -44,6 +51,7 @@ function ArticleListItem({article, onStatusChange, substractArticles}) {
             
             return () => {
                 isMountedRef.current = false;
+                controller.abort();
             };
 
     }, [tryAgain])

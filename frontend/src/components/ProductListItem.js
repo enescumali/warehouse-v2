@@ -68,7 +68,10 @@ function ProductListItem({product, onSubstractArticle}) {
 
         if(isAllarticlesLoaded && failedArticles.length === 0) {
             if(substractArticles) {
-                onSubstractArticle(); 
+                // It's better to give user some time to read the message so that he can understand inventory is recalculated
+                setTimeout(() => {
+                    onSubstractArticle(); 
+                }, 2000)
             }
             setCanSale(true);
         } else {

@@ -28,7 +28,7 @@ function SalesListItem({productId}) {
             })
             .catch((error) => {
                 if (error.name === 'AbortError') {
-                    console.log('Fetch successfully aborted');
+                    console.log('Sales list call successfully aborted');
                 } else {
                     setError(error.message);
                 }
